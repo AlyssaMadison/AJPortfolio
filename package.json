@@ -1,0 +1,9 @@
+{
+  "name": "ajportfolio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vanilla React single-page portfolio for Alyssa M. James using CDN-loaded React.",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
