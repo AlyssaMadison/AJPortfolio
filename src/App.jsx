@@ -1,4 +1,71 @@
-import { ArrowRight, Camera, Film, MonitorPlay, Palette, PenTool } from 'lucide-react';
+
+const IconBase = ({ children }) => (
+  <svg
+    aria-hidden
+    viewBox="0 0 24 24"
+    width="20"
+    height="20"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.6"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    {children}
+  </svg>
+);
+
+const ArrowRight = () => (
+  <IconBase>
+    <path d="M5 12h14" />
+    <path d="m13 6 6 6-6 6" />
+  </IconBase>
+);
+
+const FilmIcon = () => (
+  <IconBase>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="M7 5v14" />
+    <path d="M17 5v14" />
+    <path d="M3 9h4" />
+    <path d="M3 15h4" />
+    <path d="M17 9h4" />
+    <path d="M17 15h4" />
+  </IconBase>
+);
+
+const MonitorIcon = () => (
+  <IconBase>
+    <rect x="3" y="4" width="18" height="13" rx="2" />
+    <path d="M8 21h8" />
+    <path d="M12 17v4" />
+    <path d="m10 9 5 3-5 3V9z" />
+  </IconBase>
+);
+
+const CameraIcon = () => (
+  <IconBase>
+    <path d="M5 7h2l1-2h8l1 2h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
+    <circle cx="12" cy="13" r="3.5" />
+  </IconBase>
+);
+
+const PenIcon = () => (
+  <IconBase>
+    <path d="m16 5 3 3L8 19H5v-3L16 5Z" />
+    <path d="M13.5 7.5 16.5 10.5" />
+  </IconBase>
+);
+
+const PaletteIcon = () => (
+  <IconBase>
+    <path d="M12 3a9 9 0 1 0 9 9c0-1.1-.9-2-2-2h-1.5a2.5 2.5 0 0 1-2.45-2 2.5 2.5 0 0 0-2.45-2H12Z" />
+    <circle cx="6.5" cy="11.5" r="1.2" />
+    <circle cx="9.5" cy="7.5" r="1.2" />
+    <circle cx="14.5" cy="7.5" r="1.2" />
+    <circle cx="17.5" cy="11.5" r="1.2" />
+  </IconBase>
+);
 
 const highlights = [
   {
@@ -38,27 +105,27 @@ const projects = [
 
 const services = [
   {
-    icon: <Film />,
+    icon: <FilmIcon />,
     title: 'Video Editing',
     description: 'Narrative structure, pacing, color, and sound that keep audiences engaged.',
   },
   {
-    icon: <MonitorPlay />,
+    icon: <MonitorIcon />,
     title: 'Digital Production',
     description: 'From discovery to delivery, I manage the details that move projects forward.',
   },
   {
-    icon: <Camera />,
+    icon: <CameraIcon />,
     title: 'Videography & Photography',
     description: 'On-set support capturing clean visuals tailored to the platform and audience.',
   },
   {
-    icon: <PenTool />,
+    icon: <PenIcon />,
     title: 'Scripting & Story',
     description: 'Helping talent and teams communicate clearly with tight scripts and outlines.',
   },
   {
-    icon: <Palette />,
+    icon: <PaletteIcon />,
     title: 'Brand-Ready Assets',
     description: 'Social-first exports, templates, and delivery that keep your library organized.',
   },
@@ -81,84 +148,103 @@ function App() {
     <div className="page">
       <div className="glow glow-blue" />
       <div className="glow glow-pink" />
-
-      <header className="shell hero">
-        <p className="eyebrow">Alyssa M. James · Digital Producer & Video Editor</p>
-        <h1>
-          I craft clean, story-driven video for brands, podcasts, and creators—
-          with a producer&apos;s eye and an editor&apos;s rhythm.
-        </h1>
-        <p className="lede">
-          From discovery through delivery, I collaborate with teams to plan, capture, and polish visuals
-          that feel intentional across every channel.
-        </p>
-        <div className="hero-actions">
-          <a className="primary" href="#projects">
-            View featured work <ArrowRight size={18} />
-          </a>
-          <a className="secondary" href="#contact">
-            Book a project
-          </a>
+      <div className="shell">
+        <header className="hero">
+          <div>
+            <div className="eyebrow">Alyssa M. James · Digital Producer & Video Editor</div>
+            <h1>
+              Crafting standout stories across video, social, and branded content with clean visuals and
+              organized delivery.
+          </h1>
+          <p className="lede">
+            I’m a Toronto-based producer and editor who blends production know-how with sharp visuals and
+            smooth edits. From strategic planning to polished exports, I help teams move from idea to
+            launch with clarity.
+          </p>
+          <div className="hero-cta">
+            <a className="button" href="mailto:hello@alyssamjames.com">
+              Let’s build something
+            </a>
+            <a className="text-link" href="#work">
+              See recent work <ArrowRight />
+            </a>
+          </div>
+          <div className="badge-row">
+            <span className="pill">Video Editing</span>
+            <span className="pill">Digital Production</span>
+            <span className="pill">Photography & DP</span>
+            <span className="pill">Motion-friendly delivery</span>
+          </div>
         </div>
-        <div className="chips">
-          <span className="chip">Video Editing</span>
-          <span className="chip">Production Management</span>
-          <span className="chip">Podcast Visuals</span>
-          <span className="chip">Lifestyle & Documentary</span>
+        <div className="stats">
+          {stats.map((stat) => (
+            <div key={stat.label} className="stat">
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </header>
 
-      <section className="shell highlights" aria-label="Highlights">
-        {highlights.map((item) => (
-          <article key={item.title} className="panel">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="shell stats" aria-label="Stats">
-        {stats.map((item) => (
-          <div key={item.label} className="stat">
-            <span className="stat-value">{item.value}</span>
-            <span className="stat-label">{item.label}</span>
+      <section className="section" aria-labelledby="highlights-title">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Focus areas</p>
+            <h2 id="highlights-title">How I help teams ship better visuals</h2>
           </div>
-        ))}
+          <div className="section-link">
+            <a className="text-link" href="#contact">
+              Book a chat <ArrowRight />
+            </a>
+          </div>
+        </div>
+        <div className="grid">
+          {highlights.map((item) => (
+            <article key={item.title} className="card">
+              <p className="eyebrow">{item.title}</p>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="projects" className="shell section" aria-label="Featured work">
-        <div className="section-header">
-          <p className="eyebrow">Featured work</p>
-          <h2>Storytelling for screens big and small</h2>
-          <p className="section-description">
-            A selection of campaigns, social-first series, and narrative edits that bring clarity and style.
-          </p>
+      <section className="section" id="work" aria-labelledby="work-title">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Selected work</p>
+            <h2 id="work-title">Recent collaborations</h2>
+          </div>
+          <p className="lede">A mix of campaign, brand, and editorial pieces tailored for social and digital.</p>
         </div>
+
         <div className="grid">
           {projects.map((project) => (
             <article key={project.title} className="card">
               <div className="card-top">
-                <span className="pill pill-ghost">{project.role}</span>
+                <a className="pill" href={project.link}>
+                  Case study
+                </a>
               </div>
               <h3>{project.title}</h3>
+              <p className="eyebrow">{project.role}</p>
               <p>{project.summary}</p>
               <a className="text-link" href={project.link}>
-                View details <ArrowRight size={16} />
+                View project <ArrowRight />
               </a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="shell section services" aria-label="Services">
-        <div className="section-header">
-          <p className="eyebrow">How I help</p>
-          <h2>End-to-end creative support</h2>
-          <p className="section-description">
-            Whether you need a trusted editor, an on-set producer, or someone to steer delivery, I keep the
-            process organized and collaborative.
-          </p>
+      <section className="section" aria-labelledby="services-title">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Capabilities</p>
+            <h2 id="services-title">Ways we can work together</h2>
+          </div>
         </div>
+
         <div className="grid services-grid">
           {services.map((service) => (
             <article key={service.title} className="card service">
@@ -170,60 +256,57 @@ function App() {
         </div>
       </section>
 
-      <section className="shell callout" id="contact">
+      <section className="callout" id="contact" aria-labelledby="contact-title">
         <div>
-          <p className="eyebrow">Let&apos;s collaborate</p>
-          <h2>Ready for a polished launch?</h2>
-          <p className="section-description">
-            I partner with marketers, founders, and production teams to deliver standout visuals on schedule.
+          <p className="eyebrow">Let’s talk</p>
+          <h2 id="contact-title">Ready for your next launch?</h2>
+          <p>
+            Whether you need an editor to jump into an ongoing campaign, a producer to steady the ship, or
+            a fresh visual system for your brand, I’m here to help.
           </p>
-          <div className="hero-actions">
-            <a className="primary" href="mailto:hello@alyssamjames.com">
-              Email Alyssa <ArrowRight size={18} />
-            </a>
-            <a className="secondary" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-              View LinkedIn
-            </a>
-          </div>
           <div className="socials">
-            <SocialLink href="https://www.instagram.com" label="Instagram" />
-            <SocialLink href="https://www.youtube.com" label="YouTube" />
-            <SocialLink href="https://www.vimeo.com" label="Vimeo" />
+            <SocialLink href="mailto:hello@alyssamjames.com" label="Email" />
+            <SocialLink href="https://www.linkedin.com/in/alyssamjames/" label="LinkedIn" />
+            <SocialLink href="https://www.instagram.com/alyssamjames/" label="Instagram" />
           </div>
         </div>
         <div className="callout-visual">
-          <div className="badge-stack">
-            <span className="pill">Timeline master</span>
-            <span className="pill">Story-led edits</span>
-            <span className="pill">Platform-ready exports</span>
-          </div>
           <div className="gradient-card">
-            <p className="eyebrow">Featured skill</p>
-            <h3>Social-first post-production</h3>
+            <div className="eyebrow">Approach</div>
+            <h3>Collaborative, organized, delivery-focused.</h3>
             <p>
-              Creating TikTok, Reels, and YouTube deliverables that honor each platform&apos;s cadence while
-              keeping the narrative tight.
+              I sync creative vision with production details so your team can stay focused on the story while
+              I handle schedules, assets, and final exports.
             </p>
+          </div>
+          <div className="badge-stack">
+            <span className="pill">Story-first edits</span>
+            <span className="pill">Platform-ready versions</span>
+            <span className="pill">Motion-friendly assets</span>
+            <span className="pill">Clean delivery folders</span>
           </div>
         </div>
       </section>
 
-      <footer className="shell footer">
-        <div>
-          <p className="eyebrow">Alyssa M. James</p>
-          <h3>Digital Producer · Video Editor · Photographer</h3>
-          <p className="section-description">
-            Crafting intentional visuals rooted in story, delivered with efficiency.
-          </p>
-        </div>
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} Alyssa M. James. All rights reserved.</p>
         <div className="footer-links">
-          <a href="#projects">Work</a>
-          <a href="#contact">Contact</a>
-          <a href="mailto:hello@alyssamjames.com">Email</a>
+          <a className="text-link" href="mailto:hello@alyssamjames.com">
+            Say hello <ArrowRight />
+          </a>
+          <a className="text-link" href="#work">
+            View work <ArrowRight />
+          </a>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
