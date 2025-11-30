@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 
 interface Highlight {
@@ -27,6 +28,8 @@ interface SocialLinkProps {
   href: string;
   label: string;
 }
+
+type FocusKey = 'Video Production' | 'Photography' | 'Video Editing';
 
 const IconBase = ({ children }: { children: ReactNode }) => (
   <svg
@@ -172,39 +175,86 @@ const SocialLink = ({ href, label }: SocialLinkProps) => (
   </a>
 );
 
+const focusAreas: Record<FocusKey, { summary: string; bullets: string[] }> = {
+  'Video Production': {
+    summary:
+      'Planning, producing, and directing shoots that are organized, on-brief, and ready for multiplatform distribution.',
+    bullets: [
+      'Run of show, schedules, and call sheets that keep crews moving',
+      'On-set support to capture clean A-roll, B-roll, and sound',
+      'Delivery plans tailored for broadcast, web, and social placements',
+    ],
+  },
+  Photography: {
+    summary:
+      'Cinematic stills with intentional lighting, art direction, and setups that capture authentic personalities.',
+    bullets: [
+      'Look development, shot lists, and location prep',
+      'Portraits, lifestyle, and product captures with detail-rich framing',
+      'Color-consistent edits and export-ready delivery folders',
+    ],
+  },
+  'Video Editing': {
+    summary:
+      'Story-first edits with rhythm, pacing, color, and sound that keep audiences engaged across every platform.',
+    bullets: [
+      'Assembly, motion-friendly timelines, and sound polishing',
+      'Versioning for TikTok, YouTube, Meta, and paid placements',
+      'Thumbnail, captioning, and delivery templates for teams',
+    ],
+  },
+};
+
 function App() {
+  const [activeFocus, setActiveFocus] = useState<FocusKey>('Video Production');
+  const focusContent = useMemo(() => focusAreas[activeFocus], [activeFocus]);
+
   return (
     <div className="page">
       <div className="glow glow-blue" />
       <div className="glow glow-pink" />
       <div className="shell">
         <header className="hero">
-          <div>
-            <div className="eyebrow">Alyssa M. James · Digital Producer & Video Editor</div>
-            <h1>
-              Crafting standout stories across video, social, and branded content with clean visuals and
-              organized delivery.
-            </h1>
-            <p className="lede">
-              I’m a Toronto-based producer and editor who blends production know-how with sharp visuals and
-              smooth edits. From strategic planning to polished exports, I help teams move from idea to
-              launch with clarity.
-            </p>
-            <div className="hero-cta">
-              <a className="button" href="mailto:hello@alyssamjames.com">
-                Let’s build something
-              </a>
-              <a className="text-link" href="#work">
-                See recent work <ArrowRight />
-              </a>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <div className="eyebrow">Alyssa M. James · Portfolio</div>
+              <h1 className="gradient-title">Digital Producer / Editor / Videographer / Photographer</h1>
+              <p className="lede">
+                I’m a Toronto-based creative who blends on-set production, editing, and photography into
+                cohesive visuals. From pre-pro to delivery, I keep teams organized and every export on-brand.
+              </p>
+              <div className="hero-cta">
+                <a className="button" href="mailto:hello@alyssamjames.com">
+                  Let’s build something
+                </a>
+                <a className="text-link" href="#work">
+                  See recent work <ArrowRight />
+                </a>
+              </div>
+              <div className="badge-row">
+                <span className="pill">Video Editing</span>
+                <span className="pill">Digital Production</span>
+                <span className="pill">Photography & DP</span>
+                <span className="pill">Motion-friendly delivery</span>
+              </div>
             </div>
-            <div className="badge-row">
-              <span className="pill">Video Editing</span>
-              <span className="pill">Digital Production</span>
-              <span className="pill">Photography & DP</span>
-              <span className="pill">Motion-friendly delivery</span>
+
+            <div className="reel-panel">
+              <div className="reel-header">
+                <p className="eyebrow">Demo Reel</p>
+                <p className="muted">Front and center—press play to see the energy.</p>
+              </div>
+              <div className="reel-frame">
+                <iframe
+                  title="Demo reel"
+                  src="https://player.vimeo.com/video/76979871?h=8272103f6e&title=0&byline=0&portrait=0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
             </div>
           </div>
+
           <div className="stats">
             {stats.map((stat) => (
               <div key={stat.label} className="stat">
@@ -213,7 +263,46 @@ function App() {
               </div>
             ))}
           </div>
+
+          <div className="scroll-cue" aria-label="Scroll to explore more">
+            <span className="pill pill-ghost">Scroll to explore</span>
+            <ArrowRight />
+          </div>
         </header>
+
+        <section className="section" aria-labelledby="focus-tabs-title">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Explore the craft</p>
+              <h2 id="focus-tabs-title">Select an area to see how I work</h2>
+            </div>
+          </div>
+
+          <div role="tablist" aria-label="Focus areas" className="focus-tabs">
+            {(Object.keys(focusAreas) as FocusKey[]).map((key) => (
+              <button
+                key={key}
+                role="tab"
+                aria-selected={activeFocus === key}
+                className={`pill focus-tab ${activeFocus === key ? 'is-active' : ''}`}
+                onClick={() => setActiveFocus(key)}
+              >
+                {key}
+              </button>
+            ))}
+          </div>
+
+          <article className="card focus-card" role="tabpanel" aria-live="polite">
+            <p className="eyebrow">{activeFocus}</p>
+            <h3>{activeFocus}</h3>
+            <p>{focusContent.summary}</p>
+            <ul className="focus-list">
+              {focusContent.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          </article>
+        </section>
 
         <section className="section" aria-labelledby="highlights-title">
           <div className="section-heading">

@@ -48,6 +48,27 @@ a {
   padding: 96px 0 48px;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gradient-title {
+  background: linear-gradient(120deg, #2ca5ff, #9c74ff, #ff7ac3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
 h1 {
   font-size: clamp(32px, 5vw, 46px);
   line-height: 1.05;
@@ -187,6 +208,45 @@ p {
 
 .section {
   padding: 56px 0 24px;
+}
+
+.reel-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 12px 12px 16px;
+  box-shadow: var(--shadow);
+}
+
+.reel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 0 4px 6px;
+}
+
+.reel-frame {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(123, 199, 255, 0.15), rgba(214, 155, 255, 0.2));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.reel-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+}
+
+.muted {
+  color: var(--muted);
+  margin: 0;
 }
 
 .section-header {
@@ -336,12 +396,62 @@ p {
   z-index: 1;
 }
 
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.focus-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.focus-tab {
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.focus-tab.is-active {
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(140deg, rgba(44, 165, 255, 0.2), rgba(156, 116, 255, 0.25), rgba(255, 122, 195, 0.2));
+}
+
+.focus-card {
+  margin-top: 10px;
+}
+
+.focus-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.focus-list li {
+  line-height: 1.5;
+}
+
 @media (max-width: 720px) {
   .hero {
     padding-top: 64px;
   }
 
   .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reel-header {
     flex-direction: column;
     align-items: flex-start;
   }
