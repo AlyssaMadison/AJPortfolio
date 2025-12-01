@@ -19,11 +19,6 @@ interface Service {
   description: string;
 }
 
-interface Stat {
-  label: string;
-  value: string;
-}
-
 interface SocialLinkProps {
   href: string;
   label: string;
@@ -163,12 +158,6 @@ const services: Service[] = [
   },
 ];
 
-const stats: Stat[] = [
-  { label: 'Years producing', value: '8+' },
-  { label: 'Campaign videos delivered', value: '250+' },
-  { label: 'Platforms optimized', value: 'YouTube · TikTok · Meta · Broadcast' },
-];
-
 const SocialLink = ({ href, label }: SocialLinkProps) => (
   <a className="pill" href={href} target="_blank" rel="noreferrer">
     {label}
@@ -215,31 +204,11 @@ function App() {
       <div className="glow glow-pink" />
       <div className="shell">
         <header className="hero">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <div className="eyebrow">Alyssa M. James · Portfolio</div>
-              <h1 className="gradient-title">Digital Producer / Editor / Videographer / Photographer</h1>
-              <p className="lede">
-                I’m a Toronto-based creative who blends on-set production, editing, and photography into
-                cohesive visuals. From pre-pro to delivery, I keep teams organized and every export on-brand.
-              </p>
-              <div className="hero-cta">
-                <a className="button" href="mailto:hello@alyssamjames.com">
-                  Let’s build something
-                </a>
-                <a className="text-link" href="#work">
-                  See recent work <ArrowRight />
-                </a>
-              </div>
-              <div className="badge-row">
-                <span className="pill">Video Editing</span>
-                <span className="pill">Digital Production</span>
-                <span className="pill">Photography & DP</span>
-                <span className="pill">Motion-friendly delivery</span>
-              </div>
-            </div>
+          <div className="hero-copy">
+            <div className="eyebrow">Alyssa M. James · Portfolio</div>
+            <h1 className="gradient-title">Digital Producer / Editor / Videographer / Photographer</h1>
 
-            <div className="reel-panel">
+            <div className="reel-panel hero-reel">
               <div className="reel-header">
                 <p className="eyebrow">Demo Reel</p>
                 <p className="muted">Front and center—press play to see the energy.</p>
@@ -253,15 +222,25 @@ function App() {
                 />
               </div>
             </div>
-          </div>
 
-          <div className="stats">
-            {stats.map((stat) => (
-              <div key={stat.label} className="stat">
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
+            <p className="lede">
+              I’m a Toronto-based creative who blends on-set production, editing, and photography into cohesive
+              visuals. From pre-pro to delivery, I keep teams organized and every export on-brand.
+            </p>
+            <div className="hero-actions">
+              <a className="button" href="mailto:hello@alyssamjames.com">
+                Let’s build something
+              </a>
+              <a className="text-link" href="#work">
+                See recent work <ArrowRight />
+              </a>
+            </div>
+            <div className="badge-row">
+              <span className="pill">Video Editing</span>
+              <span className="pill">Digital Production</span>
+              <span className="pill">Photography & DP</span>
+              <span className="pill">Motion-friendly delivery</span>
+            </div>
           </div>
 
           <div className="scroll-cue" aria-label="Scroll to explore more">
