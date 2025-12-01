@@ -204,6 +204,8 @@ function App() {
       <div className="glow glow-pink" />
       <div className="shell">
         <header className="hero">
+          <div className="hero-glow hero-glow-blue" />
+          <div className="hero-glow hero-glow-pink" />
           <div className="hero-copy">
             <div className="eyebrow">Alyssa M. James · Portfolio</div>
             <h1 className="gradient-title">Digital Producer / Editor / Videographer / Photographer</h1>
