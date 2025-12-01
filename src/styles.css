@@ -45,7 +45,7 @@ a {
 }
 
 .hero {
-  padding: 0 0 48px;
+  padding: 8px 0 48px;
   text-align: center;
 }
 
@@ -69,7 +69,7 @@ a {
 h1 {
   font-size: clamp(32px, 5vw, 46px);
   line-height: 1.05;
-  margin: 8px 0 16px;
+  margin: 0 0 16px;
 }
 
 h2 {
