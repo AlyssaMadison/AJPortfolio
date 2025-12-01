@@ -353,6 +353,7 @@ p {
   filter: blur(140px);
   opacity: 0.35;
   z-index: 0;
+  pointer-events: none;
 }
 
 .glow-blue {
@@ -371,7 +372,7 @@ p {
   right: -100px;
 }
 
-.page > * {
+.page > *:not(.glow) {
   position: relative;
   z-index: 1;
 }
